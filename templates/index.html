@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='favicon.ico') }}">
+    <title>Dados Selic</title>
+</head>
+<body>
+    <div class="title">
+        <h1>Dados <span style="color: #4caf50">Selic</span></h1>
+        <h2>Preditor de Crescimento com o Tesouro Selic</h2>
+    </div>
+    <form method="post" action="/">
+        <label for="sale_date">Data da Venda:</label>
+        <input type="date" name="sale_date" required><br>
+
+        <label for="price_per_unit">PU(Preço Unitário):</label>
+        <input type="number" name="price_per_unit" required><br>
+
+        <label for="quantity">Quantidade:</label>
+        <input type="number" name="quantity" required><br>
+
+        <label for="title_expiration">Data de Vencimento:</label>
+        <input type="date" name="title_expiration" required><br>
+        
+        <button type="submit">Prever</button>
+    </form>
+
+    {% if predicted_value is defined %}
+     <div class="value">
+         <p>Valor Previsto: <strong>{{ predicted_value | format_currency }}</strong></p>
+         <p>Nível de Risco: <strong>{{ risk }}</strong></p>
+     </div>
+    {% endif %}
+</body>
+</html>
